@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consulta de Artigos — Código de Posturas (Marabá)</title>
+  <meta name="description" content="Web app para consultar artigos por número ou palavra-chave no Código de Posturas de Marabá (Lei 17.333/2008).">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <header>
+    <h1>Consulta de Artigos</h1>
+    <p class="subtitle">Código de Posturas de Marabá — Lei 17.333/2008</p>
+  </header>
+
+  <main>
+    <section class="search-box">
+      <div class="mode">
+        <label><input type="radio" name="mode" value="numero" checked> Buscar por número do artigo</label>
+        <label><input type="radio" name="mode" value="palavra"> Buscar por palavra-chave</label>
+      </div>
+
+      <div id="search-by-number">
+        <label for="artInput">Artigo:</label>
+        <input id="artInput" type="text" inputmode="numeric" placeholder="Ex.: 11" />
+        <button id="btnBuscarArt">Buscar</button>
+      </div>
+
+      <div id="search-by-keyword" class="hidden">
+        <label for="kwInput">Palavra-chave:</label>
+        <input id="kwInput" type="text" placeholder="Ex.: ruído, licença, interdição" />
+        <button id="btnBuscarKW">Pesquisar</button>
+      </div>
+
+      <div class="utils">
+        <button id="btnListarTodos" title="Lista todos os títulos e artigos detectados">Listar sumário</button>
+        <button id="btnCompartilhar" title="Gera um link de compartilhamento">Compartilhar</button>
+      </div>
+    </section>
+
+    <section id="results" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <p>Fonte: Lei 17.333/2008 (Código de Posturas de Marabá). App offline — todos os artigos pré-carregados.</p>
+  </footer>
+
+  <script src="law.js"></script>
+  <script src="app.js"></script>
+
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./service-worker.js').catch(console.error);
+}
+</script>
+</body>
+</html>
